@@ -1,0 +1,571 @@
+
+/*Иногда требуется установить одновременно один стиль для всех элементов веб-страницы, 
+например, задать шрифт или начертание текста. В этом случае поможет 
+универсальный селектор, который соответствует любому элементу веб-страницы.*/
+/*задаем стиль для всех элементов (обычно пишем в самом вверху либо в отдельном файле)*/
+*{
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	font-size: 1.2em;
+	background-color: #fff;
+	color: #555;
+}
+
+p{
+	padding: 0 0 20px 0;
+	line-height: 1.7em;
+}
+
+input[type="text"], input[type="password"], input[type="search"]{
+	color: #5d5d5d;
+	width: 60%;
+	padding: 8px;
+}
+
+input,  textarea{
+	/*очень похож на border, но не влияет на ширину элемента*/
+	outline: none;
+	/*влияет на ширину элемента*/
+	/*если убрать outline: none; и border: none; рамка вокруг будет светиться*/
+	border: none;
+	border: solid 1px #f2f2f2;
+}
+
+h1, h2{
+	font: normal 170% 'centry gothic', arial;
+	margin: 0 0 15px 0;
+	padding: 15px 0 5px 0;
+	color: #000;
+}
+
+h2{
+	font-size: 140%
+}
+
+a, a:hover{
+	outline: none;
+	text-decoration: underline;
+	color: #aeb002;
+}
+
+ul{
+	margin: 2px 0 22px 17px;
+}
+
+ul li{
+	margin: 0 0 6px 0;
+	padding: 0 0 4px 5px;
+	line-height: 1.5em;
+}
+
+.header{
+	background-color: darkslateblue;
+	/*высота нашего div*/
+	height: 177px;
+	font-size: 0.8em;
+	/*отступы*/
+	margin-left: 0px;
+	margin-right: 0px;
+	min-width: 900px;
+}
+
+.main, .logo, .menubar, .site_content, .footer{
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/*	margin - внешний отступ
+	padding - внутренний отступ
+
+	margin: 3px 4px 5px 6px;
+	or
+	margin-left: 3px;
+	margin-right: 4px;
+	margin-bottom: 5px;
+	margin-top: 6px;
+	*/
+
+.logo{
+	width: 880px;
+	padding-bottom: 40px;
+}
+
+.logo h1, .logo h2{
+	font: normal 300% 'century gothic', arial, sans-serif;
+	margin: 0 0 0 9px;
+}
+
+.logo_text h1, .logo_text h1 a, .logo_text h1 a:hover{
+	padding: 22px 0 0 0;
+	color: #fff;
+	/*интервал между символами*/
+	letter-spacing: 0.1em;
+	/*стилизация тега ссылки а, none убирает линию под текстом ссылки*/
+	text-decoration: none;
+}
+
+.logo_text h2{
+	font-size: 0.9em;
+	padding: 4px 0 0 0;
+	color: #999;
+}
+
+.menubar{
+	width: 900px;
+	height: 46px;
+}
+
+/*Классы применяют, когда необходимо определить стиль для индивидуального элемента веб-страницы или задать разные стили для одного тега
+  Тег.Имя класса { свойство1: значение; свойство2: значение; ... }
+  Внутри стиля вначале пишется желаемый тег, а затем, через точку пользовательское имя класса. Имена классов должны начинаться с 
+  латинского символа и могут содержать в себе символ дефиса (-) и подчеркивания (_). Использование русских букв в именах классов недопустимо. 
+  Чтобы указать в коде HTML, что тег используется с определённым классом, к тегу добавляется атрибут class="Имя класса"
+*/
+ul.menu{
+	/*прижимаем элемент к правому краю*/
+	float: right;
+}
+
+/*При создании веб-страницы часто приходится вкладывать одни теги внутрь других. 
+  Чтобы стили для этих тегов использовались корректно, помогут селекторы, которые работают только в определённом контексте. 
+  Например, задать стиль для тега <b> только когда он располагается внутри контейнера <p>. 
+  Таким образом можно одновременно установить стиль для отдельного тега, а также для тега, который находится внутри другого.
+*/
+ul.menu li{
+	float: left;
+	padding: 0 0 0 9px;
+	/*убираем точки перед каждым элементом маркированного списка*/
+	list-style: none;
+	margin: 1px 2px 0 0;
+}
+
+ul.menu li a{
+	font: normal 100% 'trebuchet ms', sans-serif;
+	/*неблочный элемент превращаем в блочный*/
+	display: block;
+	height: 20px;
+	padding: 6px 35px 5px 28px;
+	color: #fff;
+	text-decoration: none;
+}
+
+ul.menu li.selected a{
+	color: #aeb002;
+}
+
+
+/*Псевдоклассы определяют динамическое состояние элементов, которое изменяется с помощью действий пользователя, а также положение в дереве документа. 
+Примером такого состояния служит текстовая ссылка, которая меняет свой цвет при наведении на неё курсора мыши. При использовании псевдоклассов 
+браузер не перегружает текущий документ, поэтому с помощью псевдоклассов можно получить разные динамические эффекты на странице.
+
+Синтаксис применения псевдоклассов следующий.
+Селектор:Псевдокласс { Описание правил стиля }
+
+Вначале указывается селектор, к которому добавляется псевдокласс, затем следует двоеточие, после которого идёт имя псевдокласса. 
+Допускается применять псевдоклассы к именам идентификаторов или классов (A.menu:hover {color: green}), а также к контекстным 
+селекторам (.menu A:hover {background: #fc0}). Если псевдокласс указывается без селектора впереди (:hover), то он будет применяться ко всем элементам документа.
+
+Условно все псевдоклассы делятся на три группы:
+-определяющие состояние элементов;
+-имеющие отношение к дереву элементов;
+-указывающие язык текста.
+*/
+/*при наведении мышкой ссылка поменяет цвет*/
+ul.menu li a:hover{
+	color: #e4ec04;
+}
+
+hr{
+	border: solid 1px #f3f3f3;
+}
+
+.site_content{
+	width: 880px;
+	/*если что-то выходит за рамки заданного размера - лишнее скрываем*/
+	overflow: hidden;
+	margin: 20px auto 0 auto;
+	background-color: white;
+}
+
+.sidebar_container{
+	float: right;
+	width: 224px;
+}
+
+.sidebar{
+	float: right;
+	width: 222px;
+	padding: 5%;
+	margin: 0 0 16px 0;
+	/*рамка вокруг div, solid - тип рамки(прямая), толщина - 1px, цвет - #f2f2f2*/
+	border: solid 1px #f2f2f2;
+	/*закругление рамки*/
+	border-radius: 5px;
+	background-color: #f9f9f9;
+}
+
+.btn{
+	padding: 8px;
+	background-color: white;
+	/*когда наводимим курсор на кнопку - он меняется (на руку с пальчиком)*/
+	cursor: pointer;
+}
+
+.sidebar h2{
+	color: #136cb2;
+}
+
+.lables_passreg_text {
+	font-size: 0.7em;
+	margin-top: 3%;
+	margin-left: 2%;
+}
+
+.sidebar ul{
+	margin: 0;
+}
+
+.sidebar ul li{
+	/*Изменяет вид маркера для каждого элемента списка. Это свойство используется только в случае, когда значение list-style-image 
+	установлено как none. Маркеры различаются для маркированного списка (тег <ul>) и нумерованного (тег <ol>).*/
+	list-style-type: none;
+	margin: 0 0 0 0;
+}
+
+.sidebar .rating_sidebar{
+	float: right;
+}
+
+
+.content{
+	text-align: left;
+	width: 620px;
+	padding: 0 0 0 5px;
+	float: left;
+}
+
+.content a{
+	text-decoration: none;
+}
+
+.films_block{
+	margin-bottom: 5%;
+}
+
+.films_block img{
+	border-radius: 5px;
+	border: solid 5px #dad7d5;
+	width: 22%;
+}
+
+
+.posts .posts_content{
+	font-size: 0.8em;
+}
+
+.info_film_page{
+	margin-top: 2%;
+	margin-bottom: 4%;
+}
+
+.info_film_page .label{
+	font-size: 1.2em;
+}
+
+.info_film_page .value{
+	font-size: 1em;
+	color: #49945a;
+	margin-right: 3%;
+}
+
+.description_film{
+	margin-bottom: 15%;
+}
+
+.description_film img{
+	/*текст обтекает картинку слева*/
+	float: left;
+	margin-right: 2%;
+	border-radius: 5px;
+	border: solid 5px #dad7d5;
+}
+
+.reviews {
+  margin-bottom: 4%;
+  font-size: 0.9em;
+}
+
+.reviews .review_name {
+  background-color: #7268AD;
+  color: white;
+  padding: 1%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.reviews .review_text {
+  padding-top: 2%;
+  padding-bottom: 2%; 
+  padding-left: 2%;
+}
+
+.send{
+	margin-bottom: 4%;
+}
+
+.send input[type="text"], textarea {
+	border: solid 1px #c3c3c3;
+	margin-bottom: 2%;
+}
+
+.send input[type="text"]{
+	width: 98%;
+}
+
+.send textarea{
+	width: 624px;
+	height: 200px;
+}
+
+.send input[type="submit"]{
+	background-color: #7268ad;
+	padding: 3%;
+	color: white;
+	border-radius: 5px;
+}
+
+.info_film{
+	margin-bottom: 5%;
+	background-color: #f9f9f9;
+	padding: 5%;
+	height: 270px;
+}
+
+.info_film img{
+	float: left;
+	margin-right: 2%;
+	border-radius: 5px;
+	border: solid 5px #dad7d5;
+	width: 25%;
+}
+
+.button{
+	background-color: #7268ad;
+	padding: 2%;
+	color: white;
+	border-radius: 5px;
+	float: right;
+	margin-top: 5%;
+	/*запрещает обтекание элемента с левой и правой стороны, кнопка будет внизу*/
+	clear: both;
+	font-size: 0.8em;
+}
+
+.button a{
+	color: white;
+}
+
+table{
+	width: 100%;
+	border: solid 1px #f4f4f4;
+}
+
+td{
+	padding: 2%;
+	border: solid 1px #f4f4f4;
+}
+
+td img{
+	width: 60px;
+	vertical-align: middle;
+}
+
+/*выравниваем элементы по центру*/
+.center{
+	text-align: center;
+}
+
+.rating{
+	font-weight: bold;
+}
+
+.footer{
+	width: 100%;
+	height: 100px;
+	padding: 28px 0 5px 0;
+	/*размещаем контент по центру*/
+	text-align: center;
+	background-color: darkslateblue;
+	color: #a8aa94;
+	margin-left: 0px;
+	margin-right: 0px;
+	/*фиксированная верстка*/
+	min-width: 900px;
+}
+
+.footer a{
+	color: #a8aa94;
+	text-decoration: none;
+}
+
+.footer a:hover{
+	color: #fff;
+	text-decoration: none;
+}
+
+.footer p{
+	padding: 0 0 10px 0;
+}
+
+/* CSS Mobile */
+
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 560px){
+
+/*задавайте свойства CSS  в процентах!*/
+
+	.header{
+		background-color: #257965;
+		min-width: 100%;
+		height: 20%;
+		text-align: center;
+	}
+
+	.logo{
+		width: 100%;
+	}
+
+	.content{
+		width: 100%;
+		text-align: center;
+	}
+
+	.site_content{
+		width: 100%;
+		text-align: center;
+	}
+
+	.menubar{
+		width: 100%;
+		height: 100%;
+	}
+
+	.sidebar_container{
+		/*скрываем элемент*/
+		display: none;
+	}
+
+	.footer{
+		display: none;
+	}
+
+	ul.menu{
+		float: none;
+	}
+
+	ul.menu li{
+		margin: 0;
+		padding: 0;
+		float: none;
+	}
+
+	.logo h1{
+		font: normal 235% 'century gothic', arial, sans-serif;
+	}
+
+	.logo h2{
+		font: normal 100% 'century gothic', arial, sans-serif;
+		color: white;
+	}
+
+	.content h1, h2{
+		font: normal 110% 'century gothic', arial;
+	}
+
+	.films_block img{
+		width: 43%;
+	}
+
+	.posts_content p{
+		line-height: 1.5em;
+		padding: 3%;
+		text-align: left;
+	}
+
+	.posts p{
+		font-size: 120%;
+	}
+
+	/* films page */
+	.info_film{
+		float: none;
+		height: 100%;
+		text-align: left;
+	}
+
+	.info_film img{
+		width: 90%;
+		margin-bottom: 5%
+	}
+
+	.button{
+		float: none;
+		text-align: center;
+	}
+
+	/* rating page */
+	/*у нас всего одна табл на весь класс, потому испол. для всех элементов этого типа*/
+	table{
+		display: block;
+	}
+
+	th{
+		font-size: 75%;
+	}
+
+	td{
+		padding: 0;
+		margin: 0;
+		font-size: 95%;
+		text-align: left;
+	}
+
+	/* show page */
+	iframe{
+		width: 88%;
+		height: 100%
+	}
+
+	.description_film{
+		width: 90%;
+		text-align: left;
+		margin-left: 2%;
+	}
+
+	.description_film img{
+		float: none;
+		width: 73%;
+		display: block;
+		margin: 0;
+		padding: 0;
+		margin-left: 11%;
+		margin-bottom: 7%;
+	}
+
+	.reviews{
+		text-align: left;
+		width: 96%;
+	}
+
+	.send input[type="text"]{
+		width: 80%;
+	}
+
+	.send textarea{
+		width: 85%;
+	}
+}
